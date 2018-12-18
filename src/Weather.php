@@ -11,7 +11,7 @@ class Weather
     protected $key;
     protected $guzzleOptions = [];
 
-    public function __construct(string $key)
+    public function __construct($key)
     {
         $this->key = $key;
     }
@@ -26,9 +26,14 @@ class Weather
         $this->guzzleOptions = $options;
     }
 
-    public function getWeather($city, string $type = 'base', string $format = 'json')
+    public function getWeather($city, $type = 'live', $format = 'json')
     {
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
+
+        $types = [
+            'live' => 'base',
+            'forecast' => 'all',
+        ];
 
         $format = strtolower($format);
         if (!in_array($format, ['xml', 'json'])) {
@@ -36,15 +41,15 @@ class Weather
         }
 
         $type = strtolower($type);
-        if (!in_array($type, ['base', 'all'])) {
-            throw new InvalidArgumentException('Invalid type value(base/all): '.$type);
+        if (!array_key_exists($type, $types)) {
+            throw new InvalidArgumentException('Invalid type value(live/forecast): '.$type);
         }
 
         $query = array_filter([
             'key' => $this->key,
             'city' => $city,
             'output' => $format,
-            'extensions' => $type,
+            'extensions' => $types[$type],
         ]);
 
         try {
@@ -56,5 +61,15 @@ class Weather
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }
+    }
+
+    public function getLiveWeather($city, $format = 'json')
+    {
+        return $this->getWeather($city, 'live', $format);
+    }
+
+    public function getForecastsWeather($city, $format = 'json')
+    {
+        return $this->getWeather($city, 'forecast', $format);
     }
 }
