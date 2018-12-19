@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the ghwolf/weather.
+ *
+ * (c) ghwolf <ghwolf@foxmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Ghwolf\Weather;
 
 use GuzzleHttp\Client;
@@ -9,6 +18,7 @@ use Ghwolf\Weather\Exceptions\InvalidArgumentException;
 class Weather
 {
     protected $key;
+
     protected $guzzleOptions = [];
 
     public function __construct($key)
@@ -57,7 +67,7 @@ class Weather
                 'query' => $query,
             ])->getBody()->getContents();
 
-            return 'json' === $format ? json_decode($response, true) : $response ;
+            return 'json' === $format ? json_decode($response, true) : $response;
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }

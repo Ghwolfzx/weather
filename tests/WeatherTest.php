@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the ghwolf/weather.
+ *
+ * (c) ghwolf <ghwolf@foxmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Ghwolf\Weather\Tests;
 
 use GuzzleHttp\Client;
@@ -23,13 +32,13 @@ class WeatherTest extends TestCase
                 'city' => '北京',
                 'output' => 'json',
                 'extensions' => 'base',
-            ]
+            ],
         ])->andReturn($response);
 
         $weather = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
         $weather->allows()->getHttpClient()->andReturn($client);
 
-        $this->assertSame(["success" => true], $weather->getWeather('北京'));
+        $this->assertSame(['success' => true], $weather->getWeather('北京'));
 
         $response = new Response(200, [], '<hello>content</hello>');
         $client = \Mockery::mock(Client::class);
@@ -39,7 +48,7 @@ class WeatherTest extends TestCase
                 'city' => '北京',
                 'output' => 'xml',
                 'extensions' => 'all',
-            ]
+            ],
         ])->andReturn($response);
 
         $weather = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
