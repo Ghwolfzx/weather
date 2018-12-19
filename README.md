@@ -1,6 +1,10 @@
-# Weather
+<h1 align="center">Weather</h1>
 
-基于  [高德开放平台](https://lbs.amap.com/dev/id/newuser) 的 PHP 天气信息组件。
+<p align="center">基于高德开放平台的 PHP 天气信息组件。</p>
+
+<p align="center">
+<a href="https://travis-ci.org/Ghwolfzx/weather"><img src="https://travis-ci.org/Ghwolfzx/weather.svg?branch=master" alt="Build Status"></a>
+</p>
 
 ## 安装
 
