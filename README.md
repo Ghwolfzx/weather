@@ -20,7 +20,7 @@ $ composer require ghwolf/weather -vvv
 ## 使用
 
 ```php
-use Overtrue\Weather\Weather;
+use Ghwolf\Weather\Weather;
 
 $key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
@@ -191,7 +191,7 @@ array | string   getWeather(string $city, string $type = 'base', string $format 
 WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 ```
 
-可以用两种方式来获取 `Overtrue\Weather\Weather` 实例：
+可以用两种方式来获取 `Ghwolf\Weather\Weather` 实例：
 
 #### 方法参数注入
 
