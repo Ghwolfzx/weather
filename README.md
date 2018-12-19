@@ -4,6 +4,7 @@
 
 <p align="center">
 <a href="https://travis-ci.org/Ghwolfzx/weather"><img src="https://travis-ci.org/Ghwolfzx/weather.svg?branch=master" alt="Build Status"></a>
+<a href="https://github.styleci.io/repos/162280235"><img src="https://github.styleci.io/repos/162280235/shield" alt="Build Status"></a>
 </p>
 
 ## 安装
